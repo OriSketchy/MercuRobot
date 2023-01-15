@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
-
+    bool ceiling = false;
 
     // Update is called once per frame
     //Get input from player
@@ -24,14 +24,14 @@ public class PlayerMovement : MonoBehaviour
             jump = true;
        }
 
-        if(Input.GetButtonDown("Crouch")) 
+       if(Input.GetButtonDown("Crouch")) 
        {
             crouch = true;
-       } else if (Input.GetButtonUp("Crouch"))
+       } 
+       else if (Input.GetButtonUp("Crouch"))
        {
-            crouch = false;
+            crouch = ceiling;
        }
-        
     }
 
     //Update is called a fixed amount of times per second
@@ -46,6 +46,27 @@ public class PlayerMovement : MonoBehaviour
         //jump = false; reverts jump back to Not currently happening so the player only jumps once and then stops jumping 
     }
 
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+        Debug.Log("Enter " + collision.collider.tag);
+        if (collision.collider.tag == "Ceiling")
+        {
+            ceiling = true;
+        }
+
+	}
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+        Debug.Log("Exit " + collision.collider.tag);
+        if (collision.collider.tag == "Ceiling")
+        {
+            ceiling = false;
+            if (crouch && !Input.GetButton("Crouch"))
+            {
+                crouch = false;
+            }
+        }
+    }
 }
 
 
