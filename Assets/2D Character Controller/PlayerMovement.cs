@@ -48,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-        Debug.Log("Enter " + collision.collider.tag);
         if (collision.collider.tag == "Ceiling")
         {
             ceiling = true;
@@ -57,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
 	}
 	private void OnCollisionExit2D(Collision2D collision)
 	{
-        Debug.Log("Exit " + collision.collider.tag);
         if (collision.collider.tag == "Ceiling")
         {
             ceiling = false;
