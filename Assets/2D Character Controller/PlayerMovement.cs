@@ -17,26 +17,26 @@ public class PlayerMovement : MonoBehaviour
     //Get input from player
     void Update()
     {
-       horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-       if (Input.GetButtonDown("Jump"))
-       {
+        if (Input.GetButtonDown("Jump") && !crouch)
+        {
             jump = true;
-       }
+        }
 
-       if(Input.GetButtonDown("Crouch")) 
-       {
+        if (Input.GetButtonDown("Crouch"))
+        {
             crouch = true;
-       } 
-       else if (Input.GetButtonUp("Crouch"))
-       {
+        }
+        else if (Input.GetButtonUp("Crouch"))
+        {
             crouch = ceiling;
-       }
+        }
     }
 
     //Update is called a fixed amount of times per second
     //Apply input from player
-    void FixedUpdate ()
+    void FixedUpdate()
     {
         //Move Character
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
@@ -46,17 +46,18 @@ public class PlayerMovement : MonoBehaviour
         //jump = false; reverts jump back to Not currently happening so the player only jumps once and then stops jumping 
     }
 
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-        if (collision.collider.tag == "Ceiling")
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Ceiling")
         {
             ceiling = true;
         }
+    }
 
-	}
-	private void OnCollisionExit2D(Collision2D collision)
-	{
-        if (collision.collider.tag == "Ceiling")
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Ceiling")
         {
             ceiling = false;
             if (crouch && !Input.GetButton("Crouch"))
@@ -66,5 +67,3 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
-
-
