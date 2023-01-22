@@ -2619,17 +2619,29 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1216176098056891972, guid: fb0c63221db091b4c95ac8374e14c5e8, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216176098576080008, guid: fb0c63221db091b4c95ac8374e14c5e8, type: 3}
+      propertyPath: m_Size.x
+      value: 1.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216176098576080020, guid: fb0c63221db091b4c95ac8374e14c5e8, type: 3}
+      propertyPath: m_CrouchSpeed
+      value: 0.85
+      objectReference: {fileID: 0}
     - target: {fileID: 1216176098576080021, guid: fb0c63221db091b4c95ac8374e14c5e8, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1216176098576080021, guid: fb0c63221db091b4c95ac8374e14c5e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.37
+      value: 4.65
       objectReference: {fileID: 0}
     - target: {fileID: 1216176098576080021, guid: fb0c63221db091b4c95ac8374e14c5e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.42
+      value: 3.33
       objectReference: {fileID: 0}
     - target: {fileID: 1216176098576080021, guid: fb0c63221db091b4c95ac8374e14c5e8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2666,6 +2678,10 @@ PrefabInstance:
     - target: {fileID: 1216176098576080022, guid: fb0c63221db091b4c95ac8374e14c5e8, type: 3}
       propertyPath: m_Name
       value: Hugh
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414902771970778207, guid: fb0c63221db091b4c95ac8374e14c5e8, type: 3}
+      propertyPath: runSpeed
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
