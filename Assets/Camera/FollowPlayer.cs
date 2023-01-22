@@ -7,7 +7,7 @@ public class FollowPlayer : MonoBehaviour
 
     public Transform target;
     public Vector3 offset;
-    public float smoothTime = 0.3f;
+    public float smoothTime = 4f;
     private Vector3 velocity;
     [SerializeField]
     bool builtin = true;
