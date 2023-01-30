@@ -110,7 +110,7 @@ public class ButtonBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if(collision.CompareTag("Player") || collision.CompareTag("Box"))
             //could also be written as  if(collision.gameObject.tag == "Player")  but this version is more optimised if ran in a void update for example but doesnt matter in an OnTrigger
         {
             isPressingSwitch = true;
@@ -121,7 +121,7 @@ public class ButtonBehaviour : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") || collision.CompareTag("Box"))
         {
             isPressingSwitch = false;
         }
