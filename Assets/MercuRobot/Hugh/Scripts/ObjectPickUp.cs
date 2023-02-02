@@ -74,11 +74,13 @@ public class ObjectPickUp : MonoBehaviour
         grabbedObject.transform.SetParent(transform);
     }
 
-    private void Drop()
+    public void Drop()
     {
-        Debug.Assert(grabbedObject != null);
-         grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        if (grabbedObject != null)
+        {
+            grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
             grabbedObject.transform.SetParent(null);
             grabbedObject = null;
+        }
     }
 }

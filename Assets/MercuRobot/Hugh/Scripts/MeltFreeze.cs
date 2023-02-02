@@ -9,10 +9,11 @@ public class MeltFreeze : MonoBehaviour
     [SerializeField]
     private GameObject liquid;
     bool ceiling = false;
-
+    ObjectPickUp pickUp = null;
 
     private void Start()
     {
+        pickUp = gameObject.GetComponent<ObjectPickUp>();
         Freeze();
     }
 
@@ -63,11 +64,14 @@ public class MeltFreeze : MonoBehaviour
     {
         solid.SetActive(false);
         liquid.SetActive(true);
+        pickUp.Drop();
+        pickUp.enabled = false;
     }
 
     private void Freeze()
     {
         solid.SetActive(true);
         liquid.SetActive(false);
+        pickUp.enabled = true;
     }
 }
