@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ButtonBehaviour : MonoBehaviour
 {
-    [SerializeField] DoorBehaviour DoorBehaviour;
+    [SerializeField] DoorBehaviour doorBehaviour;
     [SerializeField] float switchSpeed = 0.2f;
     [SerializeField] float switchDelay = 1f;
     [SerializeField] UnityEvent onButtonDown;
@@ -109,7 +109,8 @@ public class ButtonBehaviour : MonoBehaviour
             //could also be written as  if(collision.gameObject.tag == "Player")  but this version is more optimised if ran in a void update for example but doesnt matter in an OnTrigger
         {
             isPressingSwitch = true;
-
+            DoorKey key = collision.GetComponent<DoorKey>();
+            doorBehaviour.Unlock(key);
 
         }
     }

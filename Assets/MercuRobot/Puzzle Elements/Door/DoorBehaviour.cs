@@ -6,18 +6,40 @@ public class DoorBehaviour : MonoBehaviour
 {
 
     [SerializeField] bool isDoorOpen = false;
+    [SerializeField] bool isLocked = false;
+    [SerializeField] bool autoLock = false;
     Vector3 doorClosedPos;
     Vector3 doorOpenPos;
     [SerializeField] [Range(1,100)]float doorSpeed = 10f;
 
+    public void Lock()
+    {
+        isLocked = true;
+    }
+    public void Unlock(DoorKey key)
+    {
+        if (key != null)
+        {
+            isLocked = false;
+        }
+
+    }
+
     public void Open()
     {
-        isDoorOpen = true;
+        if (!isLocked)
+        {
+            isDoorOpen = true;
+        }
     }
 
     public void Close()
     {
         isDoorOpen = false;
+        if (autoLock)
+        {
+            isLocked = true;
+        }
     }
     public void Toggle()
     {
