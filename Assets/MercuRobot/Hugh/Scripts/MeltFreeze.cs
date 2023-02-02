@@ -22,11 +22,14 @@ public class MeltFreeze : MonoBehaviour
     {
         if (Input.GetButtonDown("Melt"))
         {
-            Melt();
-        }
-        else if (Input.GetButtonUp("Melt") && !ceiling)
-        {
-            Freeze();
+            if (IsFrozen())
+            {
+                Melt();
+            }
+            else if (!ceiling)
+            {
+                Freeze();
+            }
         }
     }
 
@@ -43,10 +46,6 @@ public class MeltFreeze : MonoBehaviour
         if (collision.tag == "Ceiling")
         {
             ceiling = false;
-            if (IsMelted() && !Input.GetButton("Melt"))
-            {
-                Freeze();
-            }
         }
     }
 
