@@ -5,10 +5,25 @@ using UnityEngine;
 public class DoorBehaviour : MonoBehaviour
 {
 
-    public bool isDoorOpen = false;
+    [SerializeField] bool isDoorOpen = false;
     Vector3 doorClosedPos;
     Vector3 doorOpenPos;
-    float doorSpeed = 10f;
+    [SerializeField] [Range(1,100)]float doorSpeed = 10f;
+
+    public void Open()
+    {
+        isDoorOpen = true;
+    }
+
+    public void Close()
+    {
+        isDoorOpen = false;
+    }
+    public void Toggle()
+    {
+        isDoorOpen = !isDoorOpen;
+    }
+
 
     // Start is called before the first frame update
     void Awake()

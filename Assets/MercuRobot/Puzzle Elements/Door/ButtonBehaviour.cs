@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ButtonBehaviour : MonoBehaviour
 {
     [SerializeField] DoorBehaviour DoorBehaviour;
-    [SerializeField] bool isDoorOpenSwitch;
-    [SerializeField] bool isDoorClosedSwitch;
     [SerializeField] float switchSpeed = 0.2f;
     [SerializeField] float switchDelay = 1f;
-  
+    [SerializeField] UnityEvent onButtonDown;
+    [SerializeField] UnityEvent onButtonUp;
+
     float switchSizeY;
     Vector3 switchUpPos;
     Vector3 switchDownPos;  float holdOffFinish = 0f;
@@ -48,14 +49,7 @@ public class ButtonBehaviour : MonoBehaviour
                 if (MoveSwitchDown())
                 {
                     state = SwitchState.Down;
-                    if (isDoorOpenSwitch && !DoorBehaviour.isDoorOpen)
-                    {
-                        DoorBehaviour.isDoorOpen = !DoorBehaviour.isDoorOpen;
-                    }
-                    else if (isDoorClosedSwitch && DoorBehaviour.isDoorOpen)
-                    {
-                        DoorBehaviour.isDoorOpen = !DoorBehaviour.isDoorOpen;
-                    }                
+                    onButtonDown.Invoke();
                 }
                 break;
 
@@ -78,6 +72,7 @@ public class ButtonBehaviour : MonoBehaviour
                 if (MoveSwitchUp())
                 {
                     state = SwitchState.Up;
+                    onButtonUp.Invoke();
                 }
                 break;
         }
