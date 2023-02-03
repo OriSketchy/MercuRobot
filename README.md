@@ -16,7 +16,9 @@ If you find any bugs, possible bug fixes, or in general anything that could be i
 ***
 
 I have an instagram and a youtube where I'm currently housing my devlog while I get an actual blogging section on my new site set up.
+
 Instagram Guide containing all DevLog posts -> https://www.instagram.com/im_v_sketchy/guide/mercurobot/17939086682590990/
+
 Youtube Playlist containing all DevLog posts -> https://www.youtube.com/watch?v=SDHVeIL4PFo&list=PLU0fwq7-9d7L5Jd9jx00d5Oe0KNszxCB-
 
-Thank you for dropping by!
+Thanks for dropping by!
