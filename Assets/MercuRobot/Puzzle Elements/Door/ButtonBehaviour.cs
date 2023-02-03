@@ -15,6 +15,7 @@ public class ButtonBehaviour : MonoBehaviour
     Vector3 switchUpPos;
     Vector3 switchDownPos;  float holdOffFinish = 0f;
     bool isPressingSwitch = false;
+    int count = 0;
 
     enum SwitchState
     {
@@ -108,6 +109,7 @@ public class ButtonBehaviour : MonoBehaviour
         if(collision.CompareTag("Player") || collision.CompareTag("Box"))
             //could also be written as  if(collision.gameObject.tag == "Player")  but this version is more optimised if ran in a void update for example but doesnt matter in an OnTrigger
         {
+            count++;
             isPressingSwitch = true;
             DoorKey key = collision.GetComponent<DoorKey>();
             doorBehaviour.Unlock(key);
@@ -119,7 +121,11 @@ public class ButtonBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("Player") || collision.CompareTag("Box"))
         {
-            isPressingSwitch = false;
+            count--;
+            if (count == 0)
+            {
+                isPressingSwitch = false;
+            }
         }
     }
 }
