@@ -69,7 +69,9 @@ public class ObjectPickUp : MonoBehaviour
     {
         Debug.Assert(grabbedObject == null);
         grabbedObject = grab;
-        grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
         grabbedObject.transform.position = grabPoint.position;
         grabbedObject.transform.SetParent(transform);
     }
