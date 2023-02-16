@@ -13,10 +13,18 @@ public class PlayerMovementSolid : MonoBehaviour
     bool ceiling = false;
 
     Animator animator;
+    //private string currentState;
+
     private void Start()
     {
         animator = GetComponentInParent<Animator>();
     }
+
+    //void ChangeAnimationState(string newState)
+    //{
+    //    //stop the same animation from interrupting itself
+    //    if (currentState == newState) return;
+    //}
 
     void Update()
     {
