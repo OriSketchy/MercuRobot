@@ -18,8 +18,6 @@ public class PlayerMovementSolid : MonoBehaviour
         animator = GetComponentInParent<Animator>();
     }
 
-    // Update is called once per frame
-    //Get input from player
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
@@ -32,17 +30,11 @@ public class PlayerMovementSolid : MonoBehaviour
         }
     }
 
-    //Update is called a fixed amount of times per second
-    //Apply input from player
     void FixedUpdate()
     {
-        //Move Character
         controller.Move(horizontalMove * Time.fixedDeltaTime, melt, jump);
         animator.SetBool("Jumping", jump = false);
         jump = false;
-
-        //Multiplying by Time.fixedDeltatime ensures that the player moves the same amount no matter how often this function is called
-        //jump = false; reverts jump back to Not currently happening so the player only jumps once and then stops jumping 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

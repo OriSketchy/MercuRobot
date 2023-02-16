@@ -11,8 +11,10 @@ public class MeltFreeze : MonoBehaviour
     bool ceiling = false;
     ObjectPickUp pickUp = null;
 
+    Animator animator;
     private void Start()
     {
+        animator = GetComponent<Animator>();
         pickUp = gameObject.GetComponent<ObjectPickUp>();
         Freeze();
     }
@@ -65,6 +67,7 @@ public class MeltFreeze : MonoBehaviour
         liquid.SetActive(true);
         pickUp.Drop();
         pickUp.enabled = false;
+        animator.SetBool("Melted", true);
     }
 
     private void Freeze()
@@ -72,5 +75,6 @@ public class MeltFreeze : MonoBehaviour
         solid.SetActive(true);
         liquid.SetActive(false);
         pickUp.enabled = true;
+        animator.SetBool("Melted", false);
     }
 }
