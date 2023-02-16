@@ -12,14 +12,22 @@ public class PlayerMovementSolid : MonoBehaviour
     bool melt = false;
     bool ceiling = false;
 
+    Animator animator;
+    private void Start()
+    {
+        animator = GetComponentInParent<Animator>();
+    }
+
     // Update is called once per frame
     //Get input from player
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        animator.SetBool("Walking", horizontalMove != 0);
 
         if (Input.GetButtonDown("Jump") && !melt)
         {
+            animator.SetBool("Jumping", jump = true);
             jump = true;
         }
     }
@@ -30,6 +38,7 @@ public class PlayerMovementSolid : MonoBehaviour
     {
         //Move Character
         controller.Move(horizontalMove * Time.fixedDeltaTime, melt, jump);
+        animator.SetBool("Jumping", jump = false);
         jump = false;
 
         //Multiplying by Time.fixedDeltatime ensures that the player moves the same amount no matter how often this function is called
