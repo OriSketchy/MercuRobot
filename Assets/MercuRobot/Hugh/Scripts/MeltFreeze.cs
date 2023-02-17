@@ -12,27 +12,54 @@ public class MeltFreeze : MonoBehaviour
     ObjectPickUp pickUp = null;
 
     Animator animator;
+
+    public enum State
+    {
+        Solid, 
+        Melting, 
+        Liquid, 
+        Freezing
+    }
+
+    State state = State.Solid;
+
+    public State CurrentState { get => state; }
+
+    public bool CanMove()
+    {
+        return state == State.Solid ||
+               state == State.Liquid;
+    }
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         pickUp = gameObject.GetComponent<ObjectPickUp>();
-        Freeze();
+        FreezeEnd();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Melt"))
+        switch (state)
         {
-            if (IsFrozen())
-            {
-                Melt();
-            }
-            else if (!ceiling)
-            {
-                Freeze();
-            }
+            case State.Solid:
+                if (Input.GetButtonDown("Melt"))
+                    MeltStart();
+                break;
+
+            case State.Melting:
+                break;
+
+            case State.Liquid:
+                if (Input.GetButtonDown("Melt") && !ceiling)
+                    FreezeStart();
+                break;
+
+            case State.Freezing:
+                break;
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,30 +78,32 @@ public class MeltFreeze : MonoBehaviour
         }
     }
 
-    private bool IsMelted()
+    private void MeltStart()
     {
-        return liquid.activeInHierarchy;
+        state = State.Melting;
+        animator.SetBool("Melted", true);
     }
-
-    private bool IsFrozen()
+    private void MeltEnd()
     {
-        return !IsMelted();
-    }
-
-    private void Melt()
-    {
+        state = State.Liquid;
         solid.SetActive(false);
         liquid.SetActive(true);
         pickUp.Drop();
         pickUp.enabled = false;
-        animator.SetBool("Melted", true);
     }
-
-    private void Freeze()
+    
+    private void FreezeStart()
     {
+        state = State.Freezing;
+        animator.SetBool("Melted", false);
+    }
+   
+    private void FreezeEnd()
+    {
+        state = State.Solid;
         solid.SetActive(true);
         liquid.SetActive(false);
         pickUp.enabled = true;
-        animator.SetBool("Melted", false);
     }
+
 }

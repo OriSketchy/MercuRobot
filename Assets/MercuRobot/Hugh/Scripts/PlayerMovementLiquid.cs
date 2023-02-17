@@ -9,14 +9,24 @@ public class PlayerMovementLiquid : MonoBehaviour
     float horizontalMove = 0f;
 
     Animator animator;
+    MeltFreeze meltFreeze;
 
     private void Start()
     {
         animator = GetComponentInParent<Animator>();
+        meltFreeze = GetComponentInParent<MeltFreeze>();
     }
+
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        if (meltFreeze.CanMove())
+        {
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        }
+        else
+        {
+            horizontalMove = 0f;
+        }          
         animator.SetBool("Walking", horizontalMove != 0);
     }
 

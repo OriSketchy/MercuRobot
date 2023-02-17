@@ -62,7 +62,6 @@ public class CharacterController2D : MonoBehaviour
                 m_Grounded = true;
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
-				animator.SetBool("Grounded", m_Grounded = true);
 			}
 		}
 	}
@@ -135,7 +134,6 @@ public class CharacterController2D : MonoBehaviour
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
-			animator.SetBool("Grounded", m_Grounded = false);
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}

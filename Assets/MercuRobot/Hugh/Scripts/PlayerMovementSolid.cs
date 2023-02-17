@@ -9,58 +9,41 @@ public class PlayerMovementSolid : MonoBehaviour
 
     float horizontalMove = 0f;
     bool jump = false;
-    bool melt = false;
     bool ceiling = false;
 
     Animator animator;
-    //private string currentState;
+    MeltFreeze meltFreeze;
 
     private void Start()
     {
         animator = GetComponentInParent<Animator>();
+        meltFreeze = GetComponentInParent<MeltFreeze>();
     }
 
-    //void ChangeAnimationState(string newState)
-    //{
-    //    //stop the same animation from interrupting itself
-    //    if (currentState == newState) return;
-    //}
 
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        animator.SetBool("Walking", horizontalMove != 0);
-
-        if (Input.GetButtonDown("Jump") && !melt)
+        if (meltFreeze.CanMove())
         {
-            animator.SetBool("Jumping", jump = true);
-            jump = true;
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+            
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+            }
         }
+        else
+        {
+            horizontalMove = 0f;
+            jump = false;
+        }
+        animator.SetBool("Walking", horizontalMove != 0);
+        animator.SetBool("Jumping", jump);
     }
 
     void FixedUpdate()
     {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, melt, jump);
-        animator.SetBool("Jumping", jump = false);
+        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         jump = false;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Ceiling")
-        {
-            ceiling = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Ceiling")
-        {
-            ceiling = false;
-            if (melt && !Input.GetButton("Melt"))
-            {
-                melt = false;
-            }
-        }
     }
 }
