@@ -12,6 +12,7 @@ public class MeltFreeze : MonoBehaviour
     ObjectPickUp pickUp = null;
 
     Animator animator;
+    Rigidbody2D rb;
 
     public enum State
     {
@@ -35,6 +36,8 @@ public class MeltFreeze : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         pickUp = gameObject.GetComponent<ObjectPickUp>();
+        rb = GetComponentInParent<Rigidbody2D>();
+
         FreezeEnd();
     }
 
@@ -60,6 +63,8 @@ public class MeltFreeze : MonoBehaviour
                 break;
         }
 
+        animator.SetFloat("SpeedX", rb.velocity.x);
+        animator.SetFloat("SpeedY", rb.velocity.y);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -81,7 +86,7 @@ public class MeltFreeze : MonoBehaviour
     private void MeltStart()
     {
         state = State.Melting;
-        animator.SetBool("Melted", true);
+        animator.SetTrigger("Melt");
     }
     private void MeltEnd()
     {
@@ -95,7 +100,7 @@ public class MeltFreeze : MonoBehaviour
     private void FreezeStart()
     {
         state = State.Freezing;
-        animator.SetBool("Melted", false);
+        animator.SetTrigger("Freeze");
     }
    
     private void FreezeEnd()

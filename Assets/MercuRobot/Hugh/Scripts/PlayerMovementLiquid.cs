@@ -27,7 +27,6 @@ public class PlayerMovementLiquid : MonoBehaviour
         {
             horizontalMove = 0f;
         }          
-        animator.SetBool("Walking", horizontalMove != 0);
     }
 
     void FixedUpdate()

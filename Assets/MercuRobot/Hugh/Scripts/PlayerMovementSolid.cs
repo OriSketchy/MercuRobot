@@ -13,6 +13,7 @@ public class PlayerMovementSolid : MonoBehaviour
 
     Animator animator;
     MeltFreeze meltFreeze;
+    Rigidbody2D rb;
 
     private void Start()
     {
@@ -37,7 +38,6 @@ public class PlayerMovementSolid : MonoBehaviour
             horizontalMove = 0f;
             jump = false;
         }
-        animator.SetBool("Walking", horizontalMove != 0);
         animator.SetBool("Jumping", jump);
     }
 
