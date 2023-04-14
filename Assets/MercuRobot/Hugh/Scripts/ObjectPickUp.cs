@@ -10,10 +10,6 @@ public class ObjectPickUp : MonoBehaviour
 {
     [SerializeField]
     private Transform grabPoint;
-#if USE_JOINT
-    private FixedJoint2D grabJoint;
-#endif
-
     [SerializeField]
     private Transform rayPoint;
     [SerializeField]
@@ -27,12 +23,6 @@ public class ObjectPickUp : MonoBehaviour
         int layerIndex = LayerMask.NameToLayer("Objects");
         layerMask = 1 << layerIndex;
         //layer "Objects" is stored as an integer (private int layerIndex) for better performance
-
-        grabbedObject = null;
-#if USE_JOINT
-        grabJoint = GetComponent<FixedJoint2D>();
-        grabJoint.enabled = false;
-#endif
     }
 
     void Update()
@@ -81,28 +71,18 @@ public class ObjectPickUp : MonoBehaviour
         Debug.Assert(grabbedObject == null);
         grabbedObject = grab;
         Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
-#if USE_JOINT
-        grabJoint.enabled = true;
-        grabJoint.connectedBody = rb;
-#else
         rb.isKinematic = true;
         rb.velocity = Vector2.zero;
         grabbedObject.transform.position = grabPoint.position;
         grabbedObject.transform.SetParent(transform);
-#endif
     }
 
     public void Drop()
     {
         if (grabbedObject != null)
         {
-#if USE_JOINT
-            grabJoint.connectedBody = null;
-            grabJoint.enabled = false;
-#else
             grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
             grabbedObject.transform.SetParent(null);
-#endif
             grabbedObject = null;
         }
     }
