@@ -8,7 +8,7 @@ public class StartGame : MonoBehaviour
     public void ButtonClicked()
     {
         SceneManager.LoadScene(1);
-        Debug.Log("aaaaaaaaaaaa");
+        Debug.Log("Level Loaded");
 
     }
 }
