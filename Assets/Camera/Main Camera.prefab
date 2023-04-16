@@ -100,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 3, z: -10}
-  smoothTime: 0.2
-  builtin: 1
+  smoothTime: 2
+  builtin: 0
 --- !u!114 &1978502857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,4 +115,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: 95703b29f49b899499233ea7308bb800, type: 3}
-  BlockCount: 256
+  BlockCount: 512
