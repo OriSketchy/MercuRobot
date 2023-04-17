@@ -9,8 +9,8 @@ public class PlayerMovementSolid : MonoBehaviour
 
     float horizontalMove = 0f;
     bool jump = false;
-    bool ceiling = false;
-
+    float gravityHoldoffDelay = 0.5f;
+    float gravityHoldoffEnd = 0;
     Animator animator;
     MeltFreeze meltFreeze;
     Rigidbody2D rb;
@@ -19,6 +19,7 @@ public class PlayerMovementSolid : MonoBehaviour
     {
         animator = GetComponentInParent<Animator>();
         meltFreeze = GetComponentInParent<MeltFreeze>();
+        rb = GetComponentInParent<Rigidbody2D>();
     }
 
 
@@ -44,6 +45,17 @@ public class PlayerMovementSolid : MonoBehaviour
     void FixedUpdate()
     {
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+
+        if (jump)
+        {
+            rb.gravityScale = 1;
+            gravityHoldoffEnd = Time.time + gravityHoldoffDelay;
+        }
+        if (Time.time > gravityHoldoffEnd && controller.Grounded)
+        {
+            rb.gravityScale = 10;
+        }
+
         jump = false;
     }
 }

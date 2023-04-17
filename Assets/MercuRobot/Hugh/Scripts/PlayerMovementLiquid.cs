@@ -10,11 +10,13 @@ public class PlayerMovementLiquid : MonoBehaviour
 
     Animator animator;
     MeltFreeze meltFreeze;
+    Rigidbody2D rb;
 
     private void Start()
     {
         animator = GetComponentInParent<Animator>();
         meltFreeze = GetComponentInParent<MeltFreeze>();
+        rb = GetComponentInParent<Rigidbody2D>();
     }
 
     void Update()
@@ -32,5 +34,6 @@ public class PlayerMovementLiquid : MonoBehaviour
     void FixedUpdate()
     {
         controller.Move(horizontalMove * Time.fixedDeltaTime, true, false);
+        rb.gravityScale = !controller.Grounded ? 1 : 10;
     }
 }
