@@ -30,14 +30,7 @@ public class CharacterController2D : MonoBehaviour
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 
-    Animator animator;
-
     public bool Grounded { get => m_Grounded; }
-
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     private void Awake()
 	{

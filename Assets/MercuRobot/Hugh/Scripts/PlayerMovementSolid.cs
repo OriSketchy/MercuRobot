@@ -56,6 +56,8 @@ public class PlayerMovementSolid : MonoBehaviour
             rb.gravityScale = 10;
         }
 
+        rb.gravityScale = !controller.Grounded ? 1 : 10;
+
         jump = false;
     }
 }
