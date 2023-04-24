@@ -18,9 +18,9 @@ TagManager:
   - Water
   - UI
   - Objects
-  - 
-  - 
-  - 
+  - PlayerLiquid
+  - PlayerSolid
+  - Grate
   - 
   - 
   - 

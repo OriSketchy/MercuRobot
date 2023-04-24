@@ -44,6 +44,7 @@ public class MeltFreeze : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         switch (state)
         {
             case State.Solid:
