@@ -1,7 +1,7 @@
 Hi! I'm Ori and welcome to the github repository for my first ever game, MercuRobot!
 
 Let me preface this by saying:
-I'm not a progammer. I'm not a programming student. I am an artist and I signed up for a games art course yet here I am with 2 months to develop a functional game, solo, for a grade, which will count towards my final grade. 
+I'm not a programmer, I'm an artist with only a very vague idea of what I'm doing.
 I'm using a lot of unity tutorials I find around internet and enlisting the help of my dad and my brother (who are a programmer and a programming student) to make everything work as smoothly as I can make it so the coding work isn't entirely mine. People I took big chunks of code from will, obviously, be credited in the final game.
 
 Below is a link to a google drive folder containing the various builds of my game. I'll be updating it with new builds every time there's a significant change and I'll also be making the final build available in this folder for free for anyone to download and tinker with.
